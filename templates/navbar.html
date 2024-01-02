@@ -1,0 +1,35 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+  {{ super() }}
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/navbarcss.css') }}">
+  
+
+{% endblock %}
+{% block title %}Sangeet{% endblock %}
+
+{% block content %}     
+
+    <div class="nav-header">
+ 
+        <img class="logo" src="{{url_for('static',filename='images/logo.png1')}}" alt="">
+ 
+        <nav>
+          <div class="cta">
+          <a class="a" href="{{url_for('home')}}">Home</a>
+          {% if not current_user:%}
+          <a href="{{url_for('login')}}" ><button class="nav-button">Login</button></a>
+          <a href="{{url_for('register')}}" ><button class="nav-button">Register</button></a>
+          {%else: %}
+          <a href="{{url_for('history')}}"><button class="nav-button">History</button></a>
+          <a href="{{url_for('logout')}}"><button class="nav-button">Log Out</button></a>
+          
+          {%endif%}
+        </div>
+        </nav>
+
+    </div>
+    
+  {% endblock %}
